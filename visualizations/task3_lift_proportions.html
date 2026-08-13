@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300, "stroke": null}, "legend": {"labelFontSize": 13, "orient": "bottom", "title": null}}, "layer": [{"mark": {"type": "bar", "height": 75}, "encoding": {"color": {"field": "Lift", "scale": {"domain": ["Squat", "Bench", "Deadlift"]}, "sort": ["Squat", "Bench", "Deadlift"], "title": "Lift", "type": "nominal"}, "tooltip": [{"field": "SexLabel", "title": "Sex", "type": "nominal"}, {"field": "Lift", "title": "Lift", "type": "nominal"}, {"field": "MeanShare", "format": ".2f", "title": "Share of Total (%)", "type": "quantitative"}, {"field": "Lifters", "format": ",", "title": "Lifters", "type": "quantitative"}], "x": {"axis": {"labelExpr": "datum.value + '%'", "values": [0, 20, 40, 60, 80, 100]}, "field": "Start", "scale": {"domain": [0, 100]}, "title": "Percentage of Total (%)", "type": "quantitative"}, "x2": {"field": "End"}, "y": {"axis": {"labelFontSize": 15}, "field": "SexLabel", "sort": ["Female", "Male"], "title": null, "type": "nominal"}}}, {"mark": {"type": "text", "color": "white", "fontSize": 14, "fontWeight": "bold"}, "encoding": {"text": {"field": "Label", "type": "nominal"}, "x": {"field": "Midpoint", "scale": {"domain": [0, 100]}, "type": "quantitative"}, "y": {"field": "SexLabel", "sort": ["Female", "Male"], "type": "nominal"}}}], "data": {"name": "data-f4b4204ee6ae3632fe19a1f2bc0e66eb"}, "height": 250, "title": {"text": "How Do Lift Proportions Differ Between Male and Female Lifters?", "anchor": "middle", "fontSize": 20, "subtitle": ["Average contribution of squat, bench press, and deadlift to total.", "Raw USAPL full-power performances; one highest-total performance per Name\u2013Sex combination."], "subtitleFontSize": 13}, "width": 800, "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-f4b4204ee6ae3632fe19a1f2bc0e66eb": [{"Sex": "F", "Lift": "Squat", "MeanShare": 36.09, "Lifters": 31300, "SexLabel": "Female", "Label": "36.1%", "Start": 0.0, "End": 36.09, "Midpoint": 18.045}, {"Sex": "F", "Lift": "Bench", "MeanShare": 20.12, "Lifters": 31300, "SexLabel": "Female", "Label": "20.1%", "Start": 36.09, "End": 56.21000000000001, "Midpoint": 46.150000000000006}, {"Sex": "F", "Lift": "Deadlift", "MeanShare": 43.79, "Lifters": 31300, "SexLabel": "Female", "Label": "43.8%", "Start": 56.21, "End": 100.0, "Midpoint": 78.105}, {"Sex": "M", "Lift": "Squat", "MeanShare": 35.47, "Lifters": 62190, "SexLabel": "Male", "Label": "35.5%", "Start": 0.0, "End": 35.47, "Midpoint": 17.735}, {"Sex": "M", "Lift": "Bench", "MeanShare": 23.38, "Lifters": 62190, "SexLabel": "Male", "Label": "23.4%", "Start": 35.47, "End": 58.849999999999994, "Midpoint": 47.16}, {"Sex": "M", "Lift": "Deadlift", "MeanShare": 41.15, "Lifters": 62190, "SexLabel": "Male", "Label": "41.1%", "Start": 58.85, "End": 100.0, "Midpoint": 79.425}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
